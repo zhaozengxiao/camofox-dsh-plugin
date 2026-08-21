@@ -50,11 +50,11 @@ export const Config = z.object({
   /** /health 不通时是否自动拉起服务。 */
   autoStart: z.boolean().default(true),
   /** 自动拉起服务的工作目录。 */
-  serverCwd: z.string().default('/home/zhaozengxiao/camofox-browser'),
-  /** 自动拉起服务的命令。 */
-  serverCommand: z.string().default('node'),
+  serverCwd: z.string().default('/home/zhaozengxiao'),
+  /** 自动拉起服务的命令（全局安装的 camofox-browser bin）。 */
+  serverCommand: z.string().default('/home/zhaozengxiao/.npm-global/bin/camofox-browser'),
   /** 自动拉起服务的参数。 */
-  serverArgs: z.array(z.string()).default(['server.js']),
+  serverArgs: z.array(z.string()).default([]),
 })
 
 /** 每个 sessionKey 最近创建的 tabId（工具可省略 tabId 参数）。 */

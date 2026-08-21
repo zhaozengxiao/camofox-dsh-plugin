@@ -16,7 +16,7 @@ Camofox 反检测浏览器 — DeepSeek Harness (dsh) 原生工具插件。
 
 ## 安装
 
-前置：camofox-browser 已安装（`git clone https://github.com/jo-inc/camofox-browser && cd camofox-browser && npm install`）。
+前置：camofox-browser 服务已安装（推荐全局安装：`npm install -g @askjo/camofox-browser`，二进制缓存复用 `~/.cache/camoufox`）。
 
 ```bash
 # 1. 复制插件到 web profile
@@ -31,6 +31,9 @@ ln -s ../plugins/camofox ~/.dsh/profiles/web/node_modules/camofox
 
 # 4. 重启 dsh web，日志出现 [camofox] 已注册 20 个 Camofox 工具 即生效
 ```
+
+> 单副本模式：部署目录 `~/.dsh/profiles/web/plugins/camofox` 本身就是 git 仓库，
+> 改代码 → `git add -A && git commit && git push` 即完成提交+推送（改完需重启 dsh web）。
 
 > 注：若 `pnpm install` 因 lockfile 供应策略拦截，手动 `ln -s` 即可（插件依赖
 > `@deepseek-ai/dsh-tools` 通过全局 dsh 包的 node_modules 解析，无需重复安装）。
@@ -47,7 +50,7 @@ ln -s ../plugins/camofox ~/.dsh/profiles/web/node_modules/camofox
 | `screenshotDir` | `~/Deepseek/camofox/screenshots` | 截图保存目录 |
 | `cookiesDir` | `~/.camofox/cookies` | Netscape cookie 文件目录 |
 | `autoStart` | `true` | 服务掉线时自动拉起 |
-| `serverCwd` / `serverCommand` / `serverArgs` | `~/camofox-browser` / `node` / `server.js` | 自动拉起命令 |
+| `serverCwd` / `serverCommand` / `serverArgs` | `~` / `~/.npm-global/bin/camofox-browser` / `[]` | 自动拉起命令（全局安装的 bin） |
 
 ## 使用示例
 
