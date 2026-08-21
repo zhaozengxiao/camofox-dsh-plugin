@@ -1,0 +1,17 @@
+# camofox bundle patch：把 Camofox 反检测浏览器工具插件插入 web profile。
+# 作为 dsh.bundle.patch 被 dsh 加载器消费。
+- insert:
+    - id: camofox
+      name: camofox
+      config:
+        baseUrl: http://127.0.0.1:9377
+        accessKey: ''
+        userId: me
+        sessionKey: default
+        screenshotDir: /home/zhaozengxiao/Deepseek/camofox/screenshots
+        cookiesDir: /home/zhaozengxiao/.camofox/cookies
+        autoStart: true
+        serverCwd: /home/zhaozengxiao/camofox-browser
+        serverCommand: node
+        serverArgs:
+          - server.js

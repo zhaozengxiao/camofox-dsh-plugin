@@ -1,0 +1,17 @@
+{
+  "name": "camofox",
+  "version": "0.1.0",
+  "description": "Camofox 反检测浏览器工具插件：camofox_* 工具直连 camofox-browser REST API（默认 http://127.0.0.1:9377）",
+  "type": "module",
+  "main": "index.js",
+  "license": "MIT",
+  "dsh": {
+    "bundle": {
+      "patch": "cordis.patch.yml"
+    }
+  },
+  "dependencies": {
+    "@deepseek-ai/dsh-tools": "^0.1.0-rc.8",
+    "@deepseek-ai/schemastery": "^3.0.0"
+  }
+}
