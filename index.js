@@ -586,7 +586,20 @@ function apply(ctx, config) {
       parameters: t.parameters,
       output: OUT,
       async execute(args) {
-        return await t.handler(ctx, config, args || {})
+        const args0 = args || {}
+        try {
+          return await t.handler(ctx, config, args0)
+        } catch (e) {
+          // 失效标签处理：窗口里手动关闭 / 浏览器重启 / 会话过期都会让服务器
+          // 返回这些错误。此时清除对该 sessionKey 的记忆，并给出可操作提示。
+          const msg = e && e.message ? e.message : String(e)
+          if (/(Tab not found|no longer exists|browser_restarted|session_expired|Browser session expired|Session expired)/i.test(msg)) {
+            const key = args0.sessionKey || config.sessionKey
+            tabBySession.delete(key)
+            e.message = `${msg}\n[提示] 该标签已失效（可能在窗口里被关闭/浏览器重启/会话过期），已自动清除记忆。请用 camofox_create_tab 新建标签，或用 camofox_list_tabs 查看真实标签。`
+          }
+          throw e
+        }
       },
     }))
   }
